@@ -42,11 +42,13 @@
                         <tr><th>Email</th><th>:</th><td>{{$user->email}}</td></tr>
                         
                     </table>
+                    
                 </div>
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        
 
     </section>
     @endsection

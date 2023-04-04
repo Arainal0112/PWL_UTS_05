@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\bayi;
+use Illuminate\Support\Facades\DB;
 
-class BayiController extends Controller
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,24 +18,19 @@ class BayiController extends Controller
         //fungsi eloquent menampilkan data menggunakan pagination
         if($request->has('nama')) {
             $nama = request('nama');
-            $bayi = bayi::where('nama', 'LIKE', '%'.$nama.'%')->paginate(5);
-            return view('data_bayi', compact('bayi'));
+            $mahasiswas = bayi::where('nama', 'LIKE', '%'.$nama.'%')->paginate(5);
+            return view('mahasiswas.index', compact('Bayi'));
         } else {
-            // $Bayis = Bayi::all(); // Mengambil semua isi tabel
-            $Bayis = bayi::orderBy('nim', 'desc')->paginate(5);
-            return view('data_bayi', compact('bayi'))
+            // $mahasiswas = Mahasiswa::all(); // Mengambil semua isi tabel
+            $bayi = bayi::orderBy('no_urut', 'desc')->paginate(5);
+            return view('bayi.index', compact('mahasiswas'))
             ->with('i', (request()->input('page', 1) - 1) * 5); 
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-     public function create()
+    public function create()
     {
-        return view('Bayi.create');
+        return view('bayi.create');
     }
 
     /**
@@ -47,8 +43,7 @@ class BayiController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            // 'no_urut' => 'required',
-            'nama' => 'required',
+        'nama' => 'required',
             'alamat' => 'required',
             'tgl_lahir' => 'required',
             'bb_lahir' => 'required',
@@ -57,34 +52,34 @@ class BayiController extends Controller
         //fungsi eloquent untuk menambah data
         bayi::create($request->all());
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('Bayi.index')
-        ->with('success', 'bayi Berhasil Ditambahkan');
+        return redirect()->route('bayi.index')
+        ->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $no_urut
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
-    public function show($no_urut)
+    public function show($nim)
     {
-        //menampilkan detail data dengan menemukan/berdasarkan Nim bayi
-        $bayi = bayi::find($no_urut);
-        return view('Bayi.detail', compact('bayi'));
+        //menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
+        $Mahasiswa = bayi::find($nim);
+        return view('mahasiswas.detail', compact('Bayi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $no_urut
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
-    public function edit($no_urut)
+    public function edit($nim)
     {
-        //menampilkan detail data dengan menemukan berdasarkan Nim bayi untuk diedit
-        $bayi = bayi::find($no_urut);
-        return view('Bayi.edit', compact('bayi'));
+        //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
+        $Bayi = bayi::find($nim);
+        return view('bayi.edit', compact('Bayi'));
     }
 
     /**
@@ -98,8 +93,7 @@ class BayiController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-        'no_urut' => 'required',
-            'nama' => 'required',
+        'nama' => 'required',
             'alamat' => 'required',
             'tgl_lahir' => 'required',
             'bb_lahir' => 'required',
@@ -108,8 +102,8 @@ class BayiController extends Controller
         //fungsi eloquent untuk mengupdate data inputan kita
         bayi::find($nim)->update($request->all());
         //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->route('Bayi.index')
-        ->with('success', 'bayi Berhasil Diupdate');
+        return redirect()->route('bayi.index')
+        ->with('success', 'Mahasiswa Berhasil Diupdate');
     }
 
     /**
@@ -122,7 +116,9 @@ class BayiController extends Controller
     {
         //fungsi eloquent untuk menghapus data
         bayi::find($nim)->delete();
-        return redirect()->route('Bayi.index')
-        -> with('success', 'bayi Berhasil Dihapus');
+        return redirect()->route('bayi.index')
+        -> with('success', 'Mahasiswa Berhasil Dihapus');
     }
+
+    
 }

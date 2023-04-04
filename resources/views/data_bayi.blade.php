@@ -1,6 +1,6 @@
 @extends('layouts.content')
 
-@section('title', 'Home')
+@section('title', 'Bayi')
 
 @section('content')
 <x-sidebar home="active" profil=""/>
