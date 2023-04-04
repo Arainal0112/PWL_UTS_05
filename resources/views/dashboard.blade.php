@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-<x-sidebar home="active" profil="" ikmal="" arainal="" pengalaman="" />
+<x-sidebar home="active" bayi=""/>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

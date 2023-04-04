@@ -1,6 +1,6 @@
 @extends('layouts.content')
 
-@section('title', 'Bayi')
+@section('title', 'Data Bayi')
 
 @section('content')
 <x-sidebar home="active" profil=""/>
@@ -35,13 +35,13 @@
         <div class="float-left my-2">
             <form action="" method="GET" class="d-flex">
                 <input type="text" class="form-control" name="nama" placeholder="Nama Bayi" value="" required>
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <button type="submit" class="btn btn-primary">Search</button>
 
             </form>
 
         </div>
         <div class="float-right my-2">
-            <a class="btn btn-success" href=""> Input BAYI</a>
+            <a class="btn btn-success" href="{{ route('bayi.create') }}"> Input BAYI</a>
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -52,24 +52,26 @@
 
 <table class="table table-bordered">
     <tr>
-
-<th>Nim</th>
+        <th>No Urut</th>
         <th>Nama</th>
-        <th>TTL</th>
-        <th>Kelas</th>
-        <th>Jurusan</th>
-        <th>E-mail</th>
-        <th>No Handphone</th>
+        <th>Alamat</th>
+        <th>Tanggal Lahir</th>
+        <th>Berat</th>
+        <th>Tinggi</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($bayi as $Bayi)
     <tr>
-        <td>{{ $Bayi->no_ }}</td>
+        <td>{{ $Bayi->no_urut}}</td>
         <td>{{ $Bayi->nama }}</td>
+        <td>{{ $Bayi->alamat }}</td>
+        <td>{{ $Bayi->tgl_lahir }}</td>
+        <td>{{ $Bayi->bb_lahir }}</td>
+        <td>{{ $Bayi->tb_lahir }}</td>
         <td>
-            <form action="{{ route('bayi.destroy',$Bayi->nim) }}" method="POST">
-                <a class="btn btn-info" href="{{ route('bayi.show',$Bayi->nim) }}">Show</a>
-                <a class="btn btn-primary" href="{{ route('bayi.edit',$Bayi->nim) }}">Edit</a>
+            <form action="{{ route('bayi.destroy',$Bayi->no_urut) }}" method="POST">
+                <a class="btn btn-info" href="{{ route('bayi.show',$Bayi->no_urut) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('bayi.edit',$Bayi->no_urut) }}">Edit</a>
                 @csrf
 
                 @method('DELETE')

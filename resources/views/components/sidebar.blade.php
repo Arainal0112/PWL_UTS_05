@@ -26,7 +26,7 @@
              with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="{{Route('home')}}" class="nav-link {{$home}}">
+                        <a href="{{Route('home')}}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>
                                 Dashboard
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('home')}}" class="nav-link {{$home}}">
+                        <a href="{{Route('bayi.index')}}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>
                                 Data Bayi
