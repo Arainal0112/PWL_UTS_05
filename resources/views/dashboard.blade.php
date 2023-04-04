@@ -1,11 +1,9 @@
-@extends('layouts.content')
+@extends('bayi.layout')
 
 @section('title', 'Home')
 
 @section('content')
-<x-sidebar home="active" bayi=""/>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">

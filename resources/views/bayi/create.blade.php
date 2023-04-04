@@ -1,71 +1,58 @@
-@extends('layouts.content')
-
-@section('title', 'Data Bayi')
-
+@extends('bayi.layout')
 @section('content')
-<x-sidebar home="active" profil=""/>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="card" style="width: 24rem;">
+            <div class="card-header">
+                Tambah Data Bayi
+            </div>
+            <div class="card-body">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form method="post" action="{{ route('bayi.store') }}" id="myForm">
+                    @csrf
+                    <div class="form-group">
+                        <label for="no_urut">No Urut</label>
+                        <input type="text" name="no_urut" class="form-control" id="no_urut"
+                            ariadescribedby="no_urut">
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" name="nama" class="form-control" id="nama"
+                            ariadescribedby="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" class="form-control" id="alamat"
+                            ariadescribedby="alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_lahir">Tanggal Lahir</label>
+                        <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir"
+                             ariadescribedby="tgl_lahir" value="2001-01-01">
+                    </div>
+                    <div class="form-group">
+                        <label for="bb_lahir">Berat</label>
+                        <input type="number" name="bb_lahir" class="form-control" id="bb_lahir"
+                            ariadescribedby="berat">
+                    </div>
+                    <div class="form-group">
+                        <label for="tb_lahir">Tinggi</label>
+                        <input type="number" name="tb_lahir" class="form-control" id="tb_lahir"
+                             aria-describedby="tb_lahir">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-
-        <!-- Default box -->
-        <div class="col-lg-12 margin-tb">
-        <div class="pull-left mt-2">
-            <h2>DATA BAYI</h2>
-        </div>
-        <div class="float-left my-2">
-            <form action="" method="GET" class="d-flex">
-                <input type="text" class="form-control" name="nama" placeholder="Nama Bayi" value="" required>
-                <button type="submit" class="btn btn-primary">Search</button>
-
-            </form>
-
-        </div>
-        <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('bayi.create') }}"> Input BAYI</a>
-        </div>
-    </div>
-    @if ($message = Session::get('success'))
-<div class="alert alert-success">
-    <p>{{ $message }}</p>
 </div>
-@endif
-
-<table class="table table-bordered">
-    <tr>
-
-<th>Nim</th>
-        <th>No Urut</th>
-        <th>Nama</th>
-        <th>Tanggal Lahir</th>
-        <th>Berat</th>
-        <th>Tinggi</th>
-        <th width="280px">Action</th>
-    </tr>
-</table>
-<div class="d-flex">
-
-</div>
-        <!-- /.card -->
-
-    </section>
-    @endsection
+@endsection

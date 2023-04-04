@@ -22,7 +22,7 @@ class BayiController extends Controller
             return view('bayi.data_bayi', compact('bayi'));
         } else {
             // $mahasiswas = Mahasiswa::all(); // Mengambil semua isi tabel
-            $bayi = bayi::orderBy('no_urut', 'desc')->paginate(5);
+            $bayi = bayi::orderBy('no_urut', 'asc')->paginate(5);
             return view('bayi.data_bayi', compact('bayi'))
             ->with('i', (request()->input('page', 1) - 1) * 5); 
         }
@@ -30,7 +30,7 @@ class BayiController extends Controller
 
     public function create()
     {
-        return view('bayi.create2');
+        return view('bayi.create');
     }
 
     /**

@@ -1,11 +1,5 @@
-@extends('layouts.content')
-
-@section('title', 'Data Bayi')
-
+@extends('bayi.layout')
 @section('content')
-<x-sidebar home="active" profil=""/>
-<!-- Content Wrapper. Contains page content -->
-<section class="content">
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 24rem;">
@@ -26,5 +20,4 @@
         </div>
     </div>
 </div>
-</section>
 @endsection
